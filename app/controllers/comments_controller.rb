@@ -70,8 +70,19 @@ class CommentsController < ApplicationController
     end
 
     def is_an_authorized_user
-      @photo = Photo.find(params.fetch(:comment).fetch(:photo_id))
-      if current_user != @photo.owner && @photo.owner.private? && !current_user.leaders.include?(@photo.owner)(@comment.owner)
+      puts "HEREREREREERE"
+      puts params
+      # The code given in the lessen doesn't actually work because the params hash will be different
+      # Depending on if you are using create or destroy
+      if params.key?(:comment)
+        photo = params[:comment][:photo_id]
+      else
+        comment = Comment.find(params[:id])
+        photo = comment.photo.id
+      end
+      
+      @photo = Photo.find(photo)
+      if current_user != @photo.owner && @photo.owner.private? && !current_user.leaders.include?(@photo.owner)
         redirect_back fallback_location: root_url, alert: "Not Authorized"
       end
     end
