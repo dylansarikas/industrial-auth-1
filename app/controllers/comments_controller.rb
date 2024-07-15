@@ -70,8 +70,6 @@ class CommentsController < ApplicationController
     end
 
     def is_an_authorized_user
-      puts "HEREREREREERE"
-      puts params
       # The code given in the lessen doesn't actually work because the params hash will be different
       # Depending on if you are using create or destroy
       if params.key?(:comment)
