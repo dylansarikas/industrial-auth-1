@@ -53,7 +53,8 @@ class PhotosController < ApplicationController
   def destroy
     @photo.destroy
     respond_to do |format|
-      format.html { redirect_back fallback_location: root_url, notice: "Photo was successfully destroyed." }
+      # Fixes trying to redirect to the photo
+      format.html { redirect_back_or_to "/#{@photo.owner.id}", notice: "Photo was successfully destroyed." }
       format.json { head :no_content }
     end
   end
