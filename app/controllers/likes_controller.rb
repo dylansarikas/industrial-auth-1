@@ -1,6 +1,5 @@
 class LikesController < ApplicationController
   before_action :set_like, only: %i[ show edit update destroy ]
-  # skip_after_action :verify_authorized
 
   # GET /likes or /likes.json
   def index
