@@ -19,7 +19,7 @@ class FollowRequestPolicy
   end
 
   def edit?
-    user = follow_request.sender
+    user == follow_request.sender
   end
 
   def create?
@@ -27,10 +27,10 @@ class FollowRequestPolicy
   end
   
   def update?
-    user = follow_request.sender
+    user == follow_request.sender
   end
 
   def destroy?
-    user = follow_request.sender
+    user == follow_request.sender
   end
 end
