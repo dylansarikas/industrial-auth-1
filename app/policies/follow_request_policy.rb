@@ -6,31 +6,15 @@ class FollowRequestPolicy
     @follow_request = follow_request
   end
 
-  def index?
-    false
-  end
-
-  def show?
-    true
-  end
-
-  def new?
-    true
-  end
-
-  def edit?
-    user == follow_request.sender
-  end
-
   def create?
     true
   end
   
   def update?
-    user == follow_request.sender
+    user == follow_request.sender || follow_request.recipient
   end
 
   def destroy?
-    user == follow_request.sender
+    user == follow_request.sender || follow_request.recipient
   end
 end

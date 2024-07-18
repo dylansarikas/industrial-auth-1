@@ -11,23 +11,23 @@ class UserPolicy < ApplicationPolicy
   end
 
   def liked?
-    true
+    show?
   end
 
   def feed?
-    true
+    user == current_user
   end
 
   def followers?
-    true
+    show?
   end
 
   def following?
-    true
+    show?
   end
 
   def discover?
-    true
+    feed?
   end
 
   def show_photos?

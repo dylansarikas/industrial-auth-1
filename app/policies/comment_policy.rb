@@ -11,11 +11,11 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def new?
-    true
+    create?
   end
 
   def create?
-    true
+    user == comment.owner || !comment.author.private? || comment.owner.followers.include?(user)
   end
 
   def edit?
@@ -23,11 +23,11 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def update?
-    user == comment.author
+    edit?
   end
 
   def destroy?
-    user == comment.author
+    edit?
   end
 
 end
